@@ -1,0 +1,119 @@
+package require tcltest
+package require helpx
+
+::tcltest::test helpx-0 {Basic test}  -setup {}  -body {helpx helpx
+}  -cleanup {}  -result {}  -output {SIGNATURE
+    helpx {args}
+
+DESCRIPTION
+    Print out help info for given command.
+
+RETURNS
+    None.
+
+ARGUMENTS
+    args
+         Name or flag (see More Info for list). Last argument will be taken as
+the name of the command.
+
+MORE INFO
+    In its current, pre-release form, Helpx has no facilities for dealing
+with multiple commands that have the same name. This should not matter
+since there are no such commands currently in Gen.
+
+SEE ALSO
+    
+
+EXAMPLE(S)
+
+
+}  -returnCodes {0}  
+
+
+::tcltest::test helpx-1 {Command not found}  -setup {}  -body {helpx asdf}  -cleanup {}  -result {}  -output {asdf not found.
+}  -returnCodes {0}  
+
+
+::tcltest::test helpx-2 {-all flag used}  -setup {}  -body {helpx -all helpx
+}  -cleanup {}  -result {}  -output {SIGNATURE
+    helpx {args}
+
+DESCRIPTION
+    Print out help info for given command.
+
+RETURNS
+    None.
+
+ARGUMENTS
+    args
+         Name or flag (see More Info for list). Last argument will be taken as
+the name of the command.
+
+MORE INFO
+    In its current, pre-release form, Helpx has no facilities for dealing
+with multiple commands that have the same name. This should not matter
+since there are no such commands currently in Gen.
+
+SEE ALSO
+    
+
+EXAMPLE(S)
+
+
+}  -returnCodes {0}  
+
+
+::tcltest::test helpx-3 {-more flag used}  -setup {}  -body {helpx -more helpx
+}  -cleanup {}  -result {}  -output {MORE INFO
+    In its current, pre-release form, Helpx has no facilities for dealing
+with multiple commands that have the same name. This should not matter
+since there are no such commands currently in Gen.
+
+}  -returnCodes {0}  
+
+
+::tcltest::test helpx-4 {-desc flag used}  -setup {}  -body {helpx -desc helpx
+}  -cleanup {}  -result {}  -output {DESCRIPTION
+    Print out help info for given command.
+
+}  -returnCodes {0}  
+
+
+::tcltest::test helpx-5 {-ret flag used}  -setup {}  -body {helpx -ret helpx
+}  -cleanup {}  -result {}  -output {RETURNS
+    None.
+
+}  -returnCodes {0}  
+
+
+::tcltest::test helpx-6 {-sig flag used}  -setup {}  -body {helpx -sig helpx
+}  -cleanup {}  -result {}  -output {SIGNATURE
+    helpx {args}
+
+}  -returnCodes {0}  
+
+
+::tcltest::test helpx-7 {-see flag used}  -setup {}  -body {helpx -see helpx
+}  -cleanup {}  -result {}  -output {SEE ALSO
+    
+
+}  -returnCodes {0}  
+
+
+::tcltest::test helpx-8 {Two flags used}  -setup {}  -body {helpx -sig -desc helpx
+}  -cleanup {}  -result {}  -output {SIGNATURE
+    helpx {args}
+
+DESCRIPTION
+    Print out help info for given command.
+
+}  -returnCodes {0}  
+
+
+::tcltest::test helpx-9 {-ex flag used}  -setup {}  -body {helpx -ex helpx
+}  -cleanup {}  -result {}  -output {EXAMPLE(S)
+
+
+}  -returnCodes {0}  
+
+

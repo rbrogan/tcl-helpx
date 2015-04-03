@@ -1,0 +1,11 @@
+Helpx
+
+WARNING
+
+What follows are advisories intended to help prevent surprises. This should be
+considered a supplement to other documentation and should not be considered
+comprehensive.
+
+! This version of Helpx is in an experimental / pre-release state. It should
+work fine for the purposes of combining with Gen to give access to help info at
+the command line. Other functionality is incomplete. !

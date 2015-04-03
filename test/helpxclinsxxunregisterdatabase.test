@@ -1,0 +1,58 @@
+package require tcltest
+package require helpx
+
+::tcltest::test HelpxCliNS::UnregisterDatabase-0 {Basic test}  -setup {}  -body {package require sqlite3
+sqlite3 sample-helpxdb sample-helpx.db
+HelpxCliNS::RegisterDatabase sample-helpxdb
+helpx -sig sample
+HelpxCliNS::UnregisterDatabase sample-helpxdb
+helpx -sig sample
+}  -cleanup {}  -result {}  -output {SIGNATURE
+    sample {args}
+
+sample not found.
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxCliNS::UnregisterDatabase-1 {Test register two, unregister first}  -setup {}  -body {package require sqlite3
+sqlite3 sample-helpxdb sample-helpx.db
+sqlite3 sample2-helpxdb sample2-helpx.db
+HelpxCliNS::RegisterDatabase sample-helpxdb
+HelpxCliNS::RegisterDatabase sample2-helpxdb
+HelpxCliNS::UnregisterDatabase sample-helpxdb
+helpx -desc sample
+}  -cleanup {}  -result {}  -output {DESCRIPTION
+    Sample 2 command.
+
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxCliNS::UnregisterDatabase-2 {Register two, unregister second}  -setup {}  -body {package require sqlite3
+sqlite3 sample-helpxdb sample-helpx.db
+sqlite3 sample2-helpxdb sample2-helpx.db
+HelpxCliNS::RegisterDatabase sample-helpxdb
+HelpxCliNS::RegisterDatabase sample2-helpxdb
+HelpxCliNS::UnregisterDatabase sample2-helpxdb
+helpx -desc sample
+}  -cleanup {}  -result {}  -output {DESCRIPTION
+    Sample command.
+
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxCliNS::UnregisterDatabase-3 {Register two, unregister both}  -setup {}  -body {package require sqlite3
+sqlite3 sample-helpxdb sample-helpx.db
+sqlite3 sample2-helpxdb sample2-helpx.db
+HelpxCliNS::RegisterDatabase sample-helpxdb
+HelpxCliNS::RegisterDatabase sample2-helpxdb
+HelpxCliNS::UnregisterDatabase sample-helpxdb
+HelpxCliNS::UnregisterDatabase sample2-helpxdb
+helpx -desc sample
+}  -cleanup {}  -result {}  -output {sample not found.
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxCliNS::UnregisterDatabase-4 {Unregister non-existent}  -setup {}  -body {HelpxCliNS::UnregisterDatabase asdf
+}  -cleanup {}  -result {}  -output {}  -returnCodes {0}  
+
+
