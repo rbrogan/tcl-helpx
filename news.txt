@@ -2,4 +2,7 @@ Helpx
 
 NEWS
 
-Watch this space for an update on each revision.
+2015.04.06
+v0.1.0 Release
+
+Pre-release to support Gen.

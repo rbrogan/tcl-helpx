@@ -216,6 +216,5 @@ proc HelpxCurrentVersion {} {
 }
 
 set HelpxDirectory [file dirname [info script]]
-cd $HelpxDirectory
-sqlite3 helpx-helpxdb helpx-helpx.db
+sqlite3 helpx-helpxdb $HelpxDirectory/helpx-helpx.db
 HelpxCliNS::RegisterDatabase helpx-helpxdb          

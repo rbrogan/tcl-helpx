@@ -179,7 +179,6 @@ command.
 
 Prefer use to git and clone the repo? It is posted up for you at the following
 locations: https://github.com/rbrogan/tcl-helpx
-https://gitorious.org/tcl-helpx
 
 How to uninstall? To uninstall you can simply delete the directory. You can also
 remove the lappend auto_path YOUR_DIR_PATH line from your Tcl init.
