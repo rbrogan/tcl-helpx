@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Helpx - HelpxNS::ArgumentInfoFor</title>
+<link rel="stylesheet" type="text/css" href="doc.css">
+<body>
+<div class="section_header">
+NAME
+</div>
+<div class="section_content">
+HelpxNS::ArgumentInfoFor  &mdash;  Get dict with argument names and descriptions for command.
+</div>
+<div class="section_header">
+SYNOPSIS
+</div>
+<div class="section_content">
+<b>HelpxNS::ArgumentInfoFor</b> <i>Command</i>
+</div>
+<div class="section_header">
+DESCRIPTION
+</div>
+<div class="section_content">
+<div class='subsection_header'>Return Value</div>
+<div class='subsection_content'>
+None.</div><div class='subsection_header'>Arguments</div><div class='subsection_content'><table class='argument_table'><tr class='table_row_b'><td class='argument_left'><i>Command</i></td><td class='argument_right'>Name or ID of command to get argument info for.</td></tr></table></div>
+</div>
+<div class="section_header">
+EXAMPLES
+</div>
+<div class="section_content">
+<div class="code_sample"><pre>% HelpxNS::EnterArgumentInfo SampleCommand Arg1 {The first argument.}<br>1<br>% HelpxNS::EnterArgumentInfo SampleCommand Arg2 {The second argument.} <br>2<br>% <b>HelpxNS::ArgumentInfoFor SampleCommand</b><br>Arg1 {The first argument.} Arg2 {The second argument.}<br></pre></div>
+<div class="section_header" >
+SEE ALSO
+</div>
+<div class="section_content" >
+<a href = 'helpxnsxxenterargumentinfo.html'>HelpxNS::EnterArgumentInfo</a>, <a href = 'helpxnsxxeraseargumentinfo.html'>HelpxNS::EraseArgumentInfo</a>
+</div>
+<div class="section_header" hidden>
+KEYWORDS
+</div>
+<div class="section_content" hidden>
+
+</div>
+</body>
+</html>

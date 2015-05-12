@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="helpx-database-schema.css">
+<title>Helpx Database Schema</title>
+</head>
+<body>
+<h1>Helpx Database Schema</h1>
+<p>
+You do not have to work with the Helpx API to build a Helpx database. This document explains to you the Helpx database schema, so that you can create and modify the database in your own way, if you prefer.
+</p>
+
+<table>
+<tr style="font-size: 125%">
+<th>
+Table or Column
+</th>
+<th>
+Meaning
+</th>
+</tr>
+<tr class="table_one">
+<td class="table_name">
+commands
+</td>
+<td>
+This table holds all the command names and IDs. The command IDs are used by all other tables.
+</td>
+</tr>
+<tr class="table_one">
+<td>
+id
+</td>
+<td>
+Simple ID. Uniquely identifies entry.
+</td>
+</tr>
+<tr class="table_one">
+<td>
+name
+</td>
+<td>
+Fully qualified name of the command. If the  command is in a namespace then it should include that namespace (e.g. MyNS::MyCommand). This is what helpx is going to search for when you run helpx SomeCommand from the CLI.
+</td>
+</tr>
+<tr class="table_two">
+<td class="table_name">
+commandinfo
+</td>
+<td>
+This table holds various single pieces of information (e.g. signature, more info, etc.).
+</td>
+</tr>
+<tr class="table_two">
+<td>
+id
+</td>
+<td>
+Simple ID. Uniquely identifies entry.
+</td>
+</tr>
+<tr class="table_two">
+<td>
+commandid
+</td>
+<td>
+Refers to entry in commands table.
+</td>
+</tr>
+<tr class="table_two">
+<td>
+infotype
+</td>
+<td>
+Which type of information (e.g. signature, short description, etc.)
+</td>
+</tr>
+<tr class="table_three">
+<td class="table_name">
+command_args
+</td>
+<td>
+This table holds information about the arguments to each command.
+</td>
+</tr>
+<tr class="table_three">
+<td>
+id
+</td>
+<td>
+Simple ID. Uniquely identifies entry.
+</td>
+</tr>
+<tr class="table_three">
+<td>
+commandid
+</td>
+<td>
+Refers to entry in commands table.
+</td>
+</tr>
+<tr class="table_three">
+<td>
+argname
+</td>
+<td>
+Name of the argument as it appears in the signature.
+</td>
+</tr>
+<tr class="table_three">
+<td>
+argdesc
+</td>
+<td>
+Description of the argument.
+</td>
+</tr>
+<tr class="table_three">
+<td>
+position
+</td>
+<td>
+In what order this element appears.
+</td>
+</tr>
+<tr class="table_four">
+<td class="table_name">
+command_examples
+</td>
+<td>
+This table holds the examples associated with each  command.
+</td>
+</tr>
+<tr class="table_four">
+<td>
+id
+</td>
+<td>
+Simple ID. Uniquely identifies entry.
+</td>
+</tr>
+<tr class="table_four">
+<td>
+commandid
+</td>
+<td>
+Refers to entry in the commands table.
+</td>
+</tr>
+<tr class="table_four">
+<td>
+data
+</td>
+<td>
+Content of the example.
+</td>
+</tr>
+<tr class="table_four">
+<td>
+position
+</td>
+<td>
+In what order this element appears.
+</td>
+</tr>
+<tr class="table_five">
+<td class="table_name">
+command_seealso
+</td>
+<td>
+This table holds the other commands that are related to this command.
+</td>
+</tr>
+<tr class="table_five">
+<td>
+id
+</td>
+<td>
+Simple ID. Uniquely identifies entry.
+</td>
+</tr>
+<tr class="table_five">
+<td>
+commandid
+</td>
+<td>
+Refers to entry in the commands table.
+</td>
+</tr>
+<tr class="table_five">
+<td>
+data
+</td>
+<td>
+Content of the see also link.
+</td>
+</tr>
+<tr class="table_five">
+<td>
+position
+</td>
+<td>
+In what order this element appears.
+</td>
+</tr>
+</table>
+
+<p>
+To better understand how this works, you can look at the database file bundled with the Helpx package and compare that with the contents of the Helpx manual. The Helpx manual was generated from that data.
+</p>
+</body>
+</html>

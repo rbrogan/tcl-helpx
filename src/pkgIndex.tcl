@@ -8,4 +8,4 @@
 # script is sourced, the variable $dir must contain the
 # full path name of this file's directory.
 
-package ifneeded helpx-cli 0.1.0 [list source [file join $dir helpx.tcl]]
+package ifneeded helpx 0.2 [list source [file join $dir helpx.tcl]]

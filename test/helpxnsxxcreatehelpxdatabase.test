@@ -1,0 +1,28 @@
+package require tcltest
+package require helpx 0.2
+
+::tcltest::test HelpxNS::CreateHelpxDatabase-0 {Basic test}  -setup {}  -body {HelpxNS::CreateHelpxDatabase ./sample-helpx.db
+set GenNS::DatabaseName sample-helpxdb
+sqlite3 sample-helpxdb ./sample-helpx.db
+HelpxNS::RegisterDatabase sample-helpxdb 
+HelpxNS::CreateCommand SampleCommand
+}  -cleanup {}  -result {1}  -output {}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::CreateHelpxDatabase-1 {FilePath is empty}  -setup {}  -body {HelpxNS::CreateHelpxDatabase {}
+}  -cleanup {}  -result {Variable FilePath has empty value.}  -output {}  -returnCodes {1}  
+
+
+::tcltest::test HelpxNS::CreateHelpxDatabase-2 {Recreate existing}  -setup {}  -body {HelpxNS::CreateHelpxDatabase ./sample-helpx.db
+set GenNS::DatabaseName sample-helpxdb
+sqlite3 sample-helpxdb ./sample-helpx.db
+HelpxNS::RegisterDatabase sample-helpxdb 
+HelpxNS::CreateCommand SampleCommand
+HelpxNS::EnterReturnValue SampleCommand None.
+puts [HelpxNS::ReturnValueFor SampleCommand]
+HelpxNS::CreateHelpxDatabase ./sample-helpx.db
+puts [HelpxNS::ReturnValueFor SampleCommand]
+}  -cleanup {}  -result {Command SampleCommand not found.}  -output {None.
+}  -returnCodes {1}  
+
+

@@ -1,0 +1,66 @@
+package require tcltest
+package require helpx 0.2
+
+::tcltest::test HelpxNS::UnregisterDatabase-0 {Basic test}  -setup {set HelpxNS::DatabaseConnectionList ""}  -body {package require sqlite3
+sqlite3 test-helpx-3-db ./test-helpx-3.db
+HelpxNS::RegisterDatabase test-helpx-3-db
+helpx -sig SampleCommand
+HelpxNS::UnregisterDatabase test-helpx-3-db
+helpx -sig SampleCommand
+}  -cleanup {set HelpxNS::DatabaseConnectionList ""}  -result {}  -output {SIGNATURE
+    SampleCommand {Arg1 Arg2}
+
+SampleCommand not found.
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::UnregisterDatabase-1 {Test register two, unregister first}  -setup {set HelpxNS::DatabaseConnectionList ""}  -body {package require sqlite3
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+sqlite3 test-helpx-3-db ./test-helpx-3.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+HelpxNS::RegisterDatabase test-helpx-3-db
+helpx -sig SampleCommand
+HelpxNS::UnregisterDatabase test-helpx-2-db
+helpx -sig SampleCommand
+}  -cleanup {set HelpxNS::DatabaseConnectionList ""}  -result {}  -output {SIGNATURE
+    
+
+SIGNATURE
+    SampleCommand {Arg1 Arg2}
+
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::UnregisterDatabase-2 {Register two, unregister second}  -setup {set HelpxNS::DatabaseConnectionList ""}  -body {package require sqlite3
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+sqlite3 test-helpx-3-db ./test-helpx-3.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+HelpxNS::RegisterDatabase test-helpx-3-db
+HelpxNS::UnregisterDatabase test-helpx-3-db
+helpx -sig SampleCommand
+}  -cleanup {set HelpxNS::DatabaseConnectionList ""}  -result {}  -output {SIGNATURE
+    
+
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::UnregisterDatabase-3 {Register two, unregister both}  -setup {set HelpxNS::DatabaseConnectionList ""}  -body {package require sqlite3
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+sqlite3 test-helpx-3-db ./test-helpx-3.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+HelpxNS::RegisterDatabase test-helpx-3-db
+HelpxNS::UnregisterDatabase test-helpx-2-db
+HelpxNS::UnregisterDatabase test-helpx-3-db
+helpx -sig SampleCommand
+}  -cleanup {set HelpxNS::DatabaseConnectionList ""}  -result {}  -output {SampleCommand not found.
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::UnregisterDatabase-4 {Unregister non-existent}  -setup {set HelpxNS::DatabaseConnectionList ""}  -body {HelpxNS::UnregisterDatabase asdf
+}  -cleanup {set HelpxNS::DatabaseConnectionList ""}  -result {}  -output {}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::UnregisterDatabase-5 {ConnectionName is empty}  -setup {}  -body {HelpxNS::UnregisterDatabase {}
+}  -cleanup {}  -result {Variable ConnectionName has empty value.}  -output {}  -returnCodes {1}  
+
+

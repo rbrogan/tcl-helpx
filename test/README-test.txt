@@ -91,10 +91,52 @@ work listed in the above two sites.
 
 all.tcl
      Test suite.
-helpxclinsxxregisterdatabase.test
-     Tests for the command HelpxCliNS::RegisterDatabase.
-helpxclinsxxunregisterdatabase.test
-     Tests for the command HelpxCliNS::UnregisterDatabase.
+helpxnsxxargumentinfofor.test
+     Tests for the command HelpxNS::ArgumentInfoFor.
+helpxnsxxcreatecommand.test
+     Tests for the command HelpxNS::CreateCommand.
+helpxnsxxcreatehelpxdatabase.test
+     Tests for the command HelpxNS::CreateHelpxDatabase.
+helpxnsxxdeletecommand.test
+     Tests for the command HelpxNS::DeleteCommand.
+helpxnsxxenterargumentinfo.test
+     Tests for the command HelpxNS::EnterArgumentInfo.
+helpxnsxxenterexample.test
+     Tests for the command HelpxNS::EnterExample.
+helpxnsxxentermoreinfo.test
+     Tests for the command HelpxNS::EnterMoreInfo.
+helpxnsxxenterreturnvalue.test
+     Tests for the command HelpxNS::EnterReturnValue.
+helpxnsxxenterseealso.test
+     Tests for the command HelpxNS::EnterSeeAlso.
+helpxnsxxentershortdescription.test
+     Tests for the command HelpxNS::EnterShortDescription.
+helpxnsxxentersignature.test
+     Tests for the command HelpxNS::EnterSignature.
+helpxnsxxeraseargumentinfo.test
+     Tests for the command HelpxNS::EraseArgumentInfo.
+helpxnsxxeraseexample.test
+     Tests for the command HelpxNS::EraseExample.
+helpxnsxxeraseseealso.test
+     Tests for the command HelpxNS::EraseSeeAlso.
+helpxnsxxexamplesfor.test
+     Tests for the command HelpxNS::ExamplesFor.
+helpxnsxxmoreinfofor.test
+     Tests for the command HelpxNS::MoreInfoFor.
+helpxnsxxregisterdatabase.test
+     Tests for the command HelpxNS::RegisterDatabase.
+helpxnsxxrenamecommand.test
+     Tests for the command HelpxNS::RenameCommand.
+helpxnsxxreturnvaluefor.test
+     Tests for the command HelpxNS::ReturnValueFor.
+helpxnsxxseealsofor.test
+     Tests for the command HelpxNS::SeeAlsoFor.
+helpxnsxxshortdescriptionfor.test
+     Tests for the command HelpxNS::ShortDescriptionFor.
+helpxnsxxsignaturefor.test
+     Tests for the command HelpxNS::SignatureFor.
+helpxnsxxunregisterdatabase.test
+     Tests for the command HelpxNS::UnregisterDatabase.
 helpx.test
      Tests for the command helpx.
 

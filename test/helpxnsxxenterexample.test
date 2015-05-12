@@ -1,0 +1,67 @@
+package require tcltest
+package require helpx 0.2
+
+::tcltest::test HelpxNS::EnterExample-0 {Basic test}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterExample SampleCommand {% SampleCommand 1 2
+1 2}
+puts [lindex [HelpxNS::ExamplesFor SampleCommand] 0]
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+}  -result {}  -output {% SampleCommand 1 2
+1 2
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::EnterExample-1 {Position invalid}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterExample SampleCommand {Sample example.} asdf
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+}  -result {Variable Position has invalid value asdf.}  -output {}  -returnCodes {1}  
+
+
+::tcltest::test HelpxNS::EnterExample-2 {Data is empty}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterExample SampleCommand {}
+puts "*[HelpxNS::ExamplesFor SampleCommand]*"
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+}  -result {}  -output {*{}*
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::EnterExample-3 {Overwrite existing}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterExample SampleCommand {V1}
+HelpxNS::EnterExample SampleCommand {V2} 0
+puts "*[HelpxNS::ExamplesFor SampleCommand]*"
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+}  -result {}  -output {*V2*
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::EnterExample-6 {Position is empty}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterExample SampleCommand {Sample example.} {}
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db}  -result {Variable Position has empty value.}  -output {}  -returnCodes {1}  
+
+
+::tcltest::test HelpxNS::EnterExample-7 {Position past end}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterExample SampleCommand {Example1}
+HelpxNS::EnterExample SampleCommand {Example2} 2
+puts [HelpxNS::ExamplesFor SampleCommand]
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db}  -result {}  -output {Example1 Example2
+}  -returnCodes {0}  
+
+

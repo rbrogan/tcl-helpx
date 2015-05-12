@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Helpx - HelpxNS::SignatureFor</title>
+<link rel="stylesheet" type="text/css" href="doc.css">
+<body>
+<div class="section_header">
+NAME
+</div>
+<div class="section_content">
+HelpxNS::SignatureFor  &mdash;  Get the name and arguments for the given command.
+</div>
+<div class="section_header">
+SYNOPSIS
+</div>
+<div class="section_content">
+<b>HelpxNS::SignatureFor</b> <i>Command</i>
+</div>
+<div class="section_header">
+DESCRIPTION
+</div>
+<div class="section_content">
+<div class='subsection_header'>Return Value</div>
+<div class='subsection_content'>
+A string containing the name and arguments for the given command (see example).</div><div class='subsection_header'>Arguments</div><div class='subsection_content'><table class='argument_table'><tr class='table_row_b'><td class='argument_left'><i>Command</i></td><td class='argument_right'>Name or ID of command to get signature for.</td></tr></table></div>
+</div>
+<div class="section_header">
+EXAMPLES
+</div>
+<div class="section_content">
+<div class="code_sample"><pre>% HelpxNS::EnterSignature SampleCommand {SampleCommand {Arg1 Arg2}}<br>1<br>% <b>HelpxNS::SignatureFor SampleCommand</b><br>SampleCommand {Arg1 Arg2}<br></pre></div>
+<div class="section_header" >
+SEE ALSO
+</div>
+<div class="section_content" >
+<a href = 'helpxnsxxentersignature.html'>HelpxNS::EnterSignature</a>
+</div>
+<div class="section_header" hidden>
+KEYWORDS
+</div>
+<div class="section_content" hidden>
+
+</div>
+</body>
+</html>

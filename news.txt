@@ -2,6 +2,76 @@ Helpx
 
 NEWS
 
+2015.05.11
+v0.2.0 Release
+
+For this release, we make available the API for you to use in making your own
+Helpx databases and bundle them with your packages.
+
+HelpxNS::ArgumentInfoFor
+     Get dict with argument names and descriptions for command.
+     
+HelpxNS::CreateCommand
+     Create a new command entry.
+     
+HelpxNS::CreateHelpxDatabase
+     Create a database file and populate it with helpx tables.
+     
+HelpxNS::DeleteCommand
+     Delete a command entry and all associated info.
+     
+HelpxNS::EnterArgumentInfo
+     Insert or update argument info for a command.
+     
+HelpxNS::EnterExample
+     Create / update an example showing command in use.
+     
+HelpxNS::EnterMoreInfo
+     Enter what is to appear in the More Info section.
+     
+HelpxNS::EnterReturnValue
+     Enters information about the return value for the given proc.
+     
+HelpxNS::EnterSeeAlso
+     Enter other commands to make links to.
+     
+HelpxNS::EnterShortDescription
+     Enters a short description (<= 60 characters) for the given proc.
+     
+HelpxNS::EnterSignature
+     Enters the signature for the given proc.
+     
+HelpxNS::EraseArgumentInfo
+     Delete argument and adjust positions.
+     
+HelpxNS::EraseExample
+     Erase example of command, at given position.
+     
+HelpxNS::EraseSeeAlso
+     Erase see also link, at given position.
+     
+HelpxNS::ExamplesFor
+     Get an ordered list of examples showing command in use.
+     
+HelpxNS::MoreInfoFor
+     Get additional information for given command.
+     
+HelpxNS::RenameCommand
+     Rename the command to a new name.
+     
+HelpxNS::ReturnValueFor
+     Gets a description of the return value for the given proc.
+     
+HelpxNS::SeeAlsoFor
+     Get a list of commands related to the given command.
+     
+HelpxNS::ShortDescriptionFor
+     Returns the shorter description for the given proc.
+     
+HelpxNS::SignatureFor
+     Returns the signature for the given proc.
+     
+
 2015.04.06
 v0.1.0 Release
 

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Helpx - HelpxNS::EnterArgumentInfo</title>
+<link rel="stylesheet" type="text/css" href="doc.css">
+<body>
+<div class="section_header">
+NAME
+</div>
+<div class="section_content">
+HelpxNS::EnterArgumentInfo  &mdash;  Insert or update argument info for a command.
+</div>
+<div class="section_header">
+SYNOPSIS
+</div>
+<div class="section_content">
+<b>HelpxNS::EnterArgumentInfo</b> <i>Command</i> <i>ArgName</i> <i>ArgDesc</i> <i>?Position?</i>
+</div>
+<div class="section_header">
+DESCRIPTION
+</div>
+<div class="section_content">
+<div class='subsection_header'>Return Value</div>
+<div class='subsection_content'>
+ID of argument info entry created or updated in the commandinfo table.</div><div class='subsection_header'>Arguments</div><div class='subsection_content'><table class='argument_table'><tr class='table_row_b'><td class='argument_left'><i>Command</i></td><td class='argument_right'>ID or name of command to enter argument info for.</td></tr><tr class='table_row_a'><td class='argument_left'><i>ArgName</i></td><td class='argument_right'>Name of argument.</td></tr><tr class='table_row_b'><td class='argument_left'><i>ArgDesc</i></td><td class='argument_right'>Description of argument.</td></tr><tr class='table_row_a'><td class='argument_left'><i>Position</i></td><td class='argument_right'>Optional. Order of argument, starting from zero index. If left blank, argument will be added at the end.</td></tr></table></div><div class = 'subsection_header'>Error Conditions</div>
+<div class= 'subsection_content'>
+<table>
+<tr>
+<th>Condition</th><th>Error Code</th><th>Error Message</th></tr>
+<tr><td>Contents of variable are invalid.</td>
+<td class="error_code">-11</td>
+<td>Variable $VarName has invalid value $Value.</td>
+</tr>
+<tr><td>Input value is empty.</td>
+<td class="error_code">-12</td>
+<td>Variable $VarName has empty value.</td>
+</tr>
+<tr><td>Input value is empty.</td>
+<td class="error_code">-12</td>
+<td>Variable $VarName has empty value.</td>
+</tr>
+<tr><td>Value already exists.</td>
+<td class="error_code">-18</td>
+<td>Value $Value in variable $VarName already exists.</td>
+</tr>
+</table>
+</div><div class = 'subsection_header'>More Info</div><div class= 'subsection_content'>If you give a position beyond the last position then a new element will be created at the end.<p>If you want to change an existing argument description, then you do not have to specify the position. The command will look up the position for the argument with the given name and overwrite the argument description.</p><p>If you enter an argument with the same name as another argument and a different position then the command will generate an error and complain of a duplicate argument.</p><p>Currently there is no way to move arguments up and down in position. You must first erase the argument and then re-enter it.
+</p></div>
+</div>
+<div class="section_header">
+EXAMPLES
+</div>
+<div class="section_content">
+<div class="code_sample"><pre>% <b>HelpxNS::EnterArgumentInfo SampleCommand Arg1 {The first argument.}</b><br>1<br>% HelpxNS::EnterArgumentInfo SampleCommand Arg2 {The second argument.}<br>2<br>% HelpxNS::ArgumentInfoFor SampleCommand<br>Arg1 {The first argument.} Arg2 {The second argument.}<br></pre></div>
+<div class="section_header" >
+SEE ALSO
+</div>
+<div class="section_content" >
+<a href = 'helpxnsxxargumentinfofor.html'>HelpxNS::ArgumentInfoFor</a>, <a href = 'helpxnsxxeraseargumentinfo.html'>HelpxNS::EraseArgumentInfo</a>
+</div>
+<div class="section_header" hidden>
+KEYWORDS
+</div>
+<div class="section_content" hidden>
+
+</div>
+</body>
+</html>

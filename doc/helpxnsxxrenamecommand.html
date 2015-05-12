@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Helpx - HelpxNS::RenameCommand</title>
+<link rel="stylesheet" type="text/css" href="doc.css">
+<body>
+<div class="section_header">
+NAME
+</div>
+<div class="section_content">
+HelpxNS::RenameCommand  &mdash;  Rename the command to a new name.
+</div>
+<div class="section_header">
+SYNOPSIS
+</div>
+<div class="section_content">
+<b>HelpxNS::RenameCommand</b> <i>Command</i> <i>NewName</i>
+</div>
+<div class="section_header">
+DESCRIPTION
+</div>
+<div class="section_content">
+<div class='subsection_header'>Return Value</div>
+<div class='subsection_content'>
+None.</div><div class='subsection_header'>Arguments</div><div class='subsection_content'><table class='argument_table'><tr class='table_row_b'><td class='argument_left'><i>Command</i></td><td class='argument_right'>Command name or ID.</td></tr><tr class='table_row_a'><td class='argument_left'><i>NewName</i></td><td class='argument_right'>New name for command.</td></tr></table></div><div class = 'subsection_header'>Error Conditions</div>
+<div class= 'subsection_content'>
+<table>
+<tr>
+<th>Condition</th><th>Error Code</th><th>Error Message</th></tr>
+<tr><td>Input value is empty.</td>
+<td class="error_code">-12</td>
+<td>Variable $VarName has empty value.</td>
+</tr>
+<tr><td>Value already exists.</td>
+<td class="error_code">-18</td>
+<td>Value $Value in variable $VarName already exists.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="section_header">
+EXAMPLES
+</div>
+<div class="section_content">
+<div class="code_sample"><pre>% HelpxNS::CreateCommand SampleCommand<br>% HelpxNS::EnterShortDescription SampleCommand {Short description here}<br>% HelpxNS::ShortDescriptionFor SampleCommand<br>Short description here.<br>% <b>HelpxNS::RenameCommand SampleCommand MyCommand</b><br>% HelpxNS::ShortDescriptionFor MyCommand<br>Short description here.<br></pre></div>
+<div class="section_header" >
+SEE ALSO
+</div>
+<div class="section_content" >
+<a href = 'helpxnsxxcreatecommand.html'>HelpxNS::CreateCommand</a>, <a href = 'helpxnsxxdeletecommand.html'>HelpxNS::DeleteCommand</a>
+</div>
+<div class="section_header" hidden>
+KEYWORDS
+</div>
+<div class="section_content" hidden>
+
+</div>
+</body>
+</html>

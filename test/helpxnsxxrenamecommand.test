@@ -1,0 +1,27 @@
+package require tcltest
+package require helpx 0.2
+
+::tcltest::test HelpxNS::RenameCommand-0 {Basic test}  -setup {file copy -force ./test-helpx-3.bak ./test-helpx-3.db
+sqlite3 test-helpx-3-db ./test-helpx-3.db
+HelpxNS::RegisterDatabase test-helpx-3-db
+set GenNS::DatabaseName test-helpx-3-db
+}  -body {HelpxNS::RenameCommand SampleCommand MyCommand
+HelpxNS::ShortDescriptionFor MyCommand
+}  -cleanup {file copy -force ./test-helpx-3.bak ./test-helpx-3.db
+}  -result {Print out the arguments.}  -output {}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::RenameCommand-3 {NewName is empty}  -setup {}  -body {HelpxNS::RenameCommand SampleCommand {}
+}  -cleanup {}  -result {Variable NewName has empty value.}  -output {}  -returnCodes {1}  
+
+
+::tcltest::test HelpxNS::RenameCommand-4 {NewName matches existing command name}  -setup {file copy -force ./test-helpx-3.bak ./test-helpx-3.db
+sqlite3 test-helpx-3-db ./test-helpx-3.db
+HelpxNS::RegisterDatabase test-helpx-3-db
+set GenNS::DatabaseName test-helpx-3-db
+}  -body {HelpxNS::CreateCommand SampleCommand2
+HelpxNS::RenameCommand SampleCommand SampleCommand2
+}  -cleanup {file copy -force ./test-helpx-3.bak ./test-helpx-3.db
+}  -result {Value SampleCommand2 in variable NewName already exists.}  -output {}  -returnCodes {1}  
+
+

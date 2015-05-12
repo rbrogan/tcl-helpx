@@ -26,7 +26,109 @@
 <div id = "PageTitle">Recent Changes</div>
 <p>This changelog is in-between the update information on the <a href="news.html">news page</a> and a diff of  current and previous versions' source. It is intended to act like code comments. It should help the reader make sense of diffs, rather than restate them.</p>
 <p><i>Want to receive notifications about changes to Helpx?</i> You can subscribe to the announcements mailing list by sending an email to <code>helpx-announce-subscribe@robertbrogan.com</code>. (No need for anything in subject or message body.) You will get an email every time we have a new release.</p>
+<p>Prior to v1.0 release, there may be breaking changes without a major rev change. After v1.0 release, breaking changes will result in a major rev change.</p>
+<div class="section-header">
+<div class="section-header-left">0.2</div><div class="section-header-right">2015.05.11</div>
+</div>
+<div class="section-content">
+<p>Helpx API to create and edit your own Helpx documentation databases and bundle them in your packages.</p>
+<p>Got rid of HelpxCliNS and replaced with HelpxNS.</p>
+<p>
+Changes by functionality<br>
+<ul>
+<li>Commands to create and modify a Helpx database.</li>
+<li>Documentation to aid in learning to use Helpx.</li>
+</ul>
+</p>
+<p>
+Changes by files<br>
+<ul>
+<li>/
+<ul>
+<li>Added sample directory to hold sample package that bundles helpx in it.</li>
+<li>changelog.html, changelog.txt
+<ul><li>Updated with latest info.</li></ul>
+</li>
+<li>news.html, news.txt
+<ul>
+<li>Updated with latest info.</li>
+</ul>
+</li>
+<li>roadmap.html
+<ul><li>Updated with latest info.</li></ul>
+</li>
+</li>
+</ul>
+</li>
+<li>/doc
+<ul>
+<li>Added pages for new commands.</li>
+<li>Added index pages with new version number.</li>
+<li>Updated index pages with new commands.</li>
+<li>helpx-database-schema.html, helpx-database-schema.css
+<ul>
+<li>Explain the schema so that user can edit tables as the like.</li>
+</ul>
+</li>
+<li>how-to-use-helpx.html</li>
+<ul>
+<li>Tutorial for getting going.</li>
+</ul>
+</li>
+<li>start-here.html</li>
+<ul>
+<li>A starting point that gives links to other pages and tells what they are for.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>/sample
+<ul>
+<li>sample-helpx.db
+<ul><li>SQLite database with Helpx schema. Includes documentation for a sample command.</li>
+</ul>
+</li>
+<li>sample.tcl
+<ul><li>Sample Tcl source file that starts up Helpx and registers its database. See manual for details.</li>
+</ul>
+</li>
+<li>sample-helpx.db.bak
+<ul><li>Backup version of the database so that user can play around and then use this file to restore.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>/src
+<ul>
+<li>helpx.tcl
+<ul>
+<li>Updated files with new commands and version number.</li>
+<li>Removed HelpxCliNS and replaced with HelpxNS.</li>
+</ul>
+</li>
+<li>helpx-helpx.db
+<ul>
+<li>New commands and new schema.</li>
+</ul>
+</li>
+<li>pkgIndex.tcl
+<ul>
+<li>Updated version.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>/test
+<ul>
+<li>Added tests for new commands.</li>
+<li>Remove test files that use old namespace name.
+</ul>
+</li>
+</ul>
+</p>
 
+</div>
+<br>
 <div class="section-header">
 <div class="section-header-left">0.1</div><div class="section-header-right">2015.04.06</div>
 </div>

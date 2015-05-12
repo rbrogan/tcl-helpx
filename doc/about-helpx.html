@@ -7,22 +7,28 @@
 <h1>About Helpx</h1>
 <h2>Warning!</h2>
 <p>
-Helpx is currently in a pre-release state. It is made available now for purposes of accessing help documentation for the Gen project from the CLI.
+Helpx is currently in a pre-release state. Up until v1.0, there may be breaking changes in each release. After v1.0, any breaking changes will result in a new major version release.
 </p>
 <h2>What is Helpx for?</h2>
 <p>
 Helpx is for generating and accessing help information in various ways (CLI, HTML pages, .chm file).
 </p>
+<p>
+Note that to use Helpx, you must also have <a href='http://www.robertbrogan.com/gen'>Gen</a> installed, a general utility library which Helpx uses.
+</p>
 <h2>How does Helpx work now?</h2>
 <p>
-For <code>helpx-cli</code>, each package that uses it will have its own help database file. Each package will open a database connection to that database file and register that connection with Helpx. This is what the Gen package does when it is loaded. After that, when you call <code>helpx</code> from the command line, it will search that database for help info and then format it for the terminal and print it out.
+For Helpx, each package that uses it will have its own help database file. Each package will open a database connection to that database file and register that connection with Helpx. This is what the Gen package does when it is loaded. After that, when you call Helpx from the command line, it will search that database for help info and then format it for the terminal and print it out.
+</p>
+<p>
+With this current release, you now can populate the help database mentioned above. You can then bundle helpx with your packages and give your users CLI access to help info.
 </p>
 <h2>How will Helpx work in the future?</h2>
 <p>
-After the next release you will be able to populate the help database mentioned in the previous section. You could then bundle helpx with your packages and give your users CLI access to help info.
+In future releases, that same database will be used for things like generating HTML pages. Likewise, we anticipate adding more advanced search capabilities.
 </p>
 <p>
-In future releases, that same database will be used for things like generating HTML pages. Likewise, we anticipate adding more advanced search capabilities.
+Note that it is likely that the database schema will change in future release. That will result in a major version change (same as if we had made a breaking API change). You can expect that if the schema changes then we will also provide a script to use to migrate your data, if that is at all possible.
 </p>
 </body>
 </html>

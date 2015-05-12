@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Helpx - HelpxNS::RegisterDatabase</title>
+<link rel="stylesheet" type="text/css" href="doc.css">
+<body>
+<div class="section_header">
+NAME
+</div>
+<div class="section_content">
+HelpxNS::RegisterDatabase  &mdash;  Register a documentation database with helpx.
+</div>
+<div class="section_header">
+SYNOPSIS
+</div>
+<div class="section_content">
+<b>HelpxNS::RegisterDatabase</b> <i>ConnectionName</i>
+</div>
+<div class="section_header">
+DESCRIPTION
+</div>
+<div class="section_content">
+<div class='subsection_header'>Return Value</div>
+<div class='subsection_content'>
+None.</div><div class='subsection_header'>Arguments</div><div class='subsection_content'><table class='argument_table'><tr class='table_row_b'><td class='argument_left'><i>ConnectionName</i></td><td class='argument_right'>Name of database connection to register.</td></tr></table></div><div class = 'subsection_header'>Error Conditions</div>
+<div class= 'subsection_content'>
+<table>
+<tr>
+<th>Condition</th><th>Error Code</th><th>Error Message</th></tr>
+<tr><td>Input value is empty.</td>
+<td class="error_code">-12</td>
+<td>Variable $VarName has empty value.</td>
+</tr>
+</table>
+</div><div class = 'subsection_header'>More Info</div><div class= 'subsection_content'>Note that the caller is responsible for opening and closing the connection, and also unregistering it, if need be.<p>If the same connection name is registered twice, it is not an error, but rather will be silently ignored. The caller should take care that the connection name is sufficiently distinctive.</p><p>If you are getting an 'invalid command name' error then probably (1) connection was never set up or (2) connection was closed.</p><p>Note can you can access this list variable as <code>HelpxNS::DatabaseConnectionList</code>.
+</p></div>
+</div>
+<div class="section_header">
+EXAMPLES
+</div>
+<div class="section_content">
+<div class="code_sample"><pre>% sqlite3 sampledb sample.db<br>% <b>HelpxNS::RegisterDatabase sampledb</b><br></pre></div>
+<div class="section_header" >
+SEE ALSO
+</div>
+<div class="section_content" >
+<a href = 'helpxnsxxunregisterdatabase.html'>HelpxNS::UnregisterDatabase</a>
+</div>
+<div class="section_header" >
+KEYWORDS
+</div>
+<div class="section_content" >
+<a href="keyword-index.html#C_database">database</a>, <a href="keyword-index.html#C_documentation">documentation</a>
+</div>
+</body>
+</html>

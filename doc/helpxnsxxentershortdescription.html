@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Helpx - HelpxNS::EnterShortDescription</title>
+<link rel="stylesheet" type="text/css" href="doc.css">
+<body>
+<div class="section_header">
+NAME
+</div>
+<div class="section_content">
+HelpxNS::EnterShortDescription  &mdash;  Enter in a short description of the command (<= 60 chars).
+</div>
+<div class="section_header">
+SYNOPSIS
+</div>
+<div class="section_content">
+<b>HelpxNS::EnterShortDescription</b> <i>Command</i> <i>ShortDescription</i>
+</div>
+<div class="section_header">
+DESCRIPTION
+</div>
+<div class="section_content">
+<div class='subsection_header'>Return Value</div>
+<div class='subsection_content'>
+ID of entry used in the commandinfo table.</div><div class='subsection_header'>Arguments</div><div class='subsection_content'><table class='argument_table'><tr class='table_row_b'><td class='argument_left'><i>Command</i></td><td class='argument_right'>Command name or ID to enter short description for.</td></tr><tr class='table_row_a'><td class='argument_left'><i>ShortDescription</i></td><td class='argument_right'>Short description (<= 60 chars) of the command.</td></tr></table></div><div class = 'subsection_header'>Error Conditions</div>
+<div class= 'subsection_content'>
+<table>
+<tr>
+<th>Condition</th><th>Error Code</th><th>Error Message</th></tr>
+<tr><td>Input value is empty.</td>
+<td class="error_code">-12</td>
+<td>Variable $VarName has empty value.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="section_header">
+EXAMPLES
+</div>
+<div class="section_content">
+<div class="code_sample"><pre>% <b>HelpxNS::EnterShortDescription SampleCommand {Short description here.}</b><br>1<br>% HelpxNS::ShortDescriptionFor SampleCommand<br>Short description here.<br></pre></div>
+<div class="section_header" >
+SEE ALSO
+</div>
+<div class="section_content" >
+<a href = 'helpxnsxxshortdescriptionfor.html'>HelpxNS::ShortDescriptionFor</a>
+</div>
+<div class="section_header" hidden>
+KEYWORDS
+</div>
+<div class="section_content" hidden>
+
+</div>
+</body>
+</html>

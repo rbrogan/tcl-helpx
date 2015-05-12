@@ -1,0 +1,35 @@
+package require tcltest
+package require helpx 0.2
+
+::tcltest::test HelpxNS::EnterMoreInfo-0 {Basic test}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterMoreInfo SampleCommand {Nothing more to say.} 
+HelpxNS::MoreInfoFor SampleCommand}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+}  -result {Nothing more to say.}  -output {}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::EnterMoreInfo-1 {Overwrite existing}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterMoreInfo SampleCommand {V1} 
+HelpxNS::EnterMoreInfo SampleCommand {V2} 
+puts [HelpxNS::MoreInfoFor SampleCommand]
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+}  -result {}  -output {V2
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::EnterMoreInfo-2 {MoreInfo is empty}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterMoreInfo SampleCommand {}
+puts "*[HelpxNS::MoreInfoFor SampleCommand]*"
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+}  -result {}  -output {**
+}  -returnCodes {0}  
+
+

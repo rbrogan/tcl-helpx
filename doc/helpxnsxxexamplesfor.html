@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Helpx - HelpxNS::ExamplesFor</title>
+<link rel="stylesheet" type="text/css" href="doc.css">
+<body>
+<div class="section_header">
+NAME
+</div>
+<div class="section_content">
+HelpxNS::ExamplesFor  &mdash;  Get an ordered list of examples showing command in use.
+</div>
+<div class="section_header">
+SYNOPSIS
+</div>
+<div class="section_content">
+<b>HelpxNS::ExamplesFor</b> <i>Command</i>
+</div>
+<div class="section_header">
+DESCRIPTION
+</div>
+<div class="section_content">
+<div class='subsection_header'>Return Value</div>
+<div class='subsection_content'>
+List where each element is an example usage of the command.</div><div class='subsection_header'>Arguments</div><div class='subsection_content'><table class='argument_table'><tr class='table_row_b'><td class='argument_left'><i>Command</i></td><td class='argument_right'>Name or ID of command to get examples of.</td></tr></table></div>
+</div>
+<div class="section_header">
+EXAMPLES
+</div>
+<div class="section_content">
+<div class="code_sample"><pre>% HelpxNS::EnterExample SampleCommand {% SampleCommand 1 2\n1 2}<br>1<br>% <b>HelpxNS::ExamplesFor SampleCommand</b><br>{% SampleCommand 1 2\n1 2}<br></pre></div>
+<div class="section_header" >
+SEE ALSO
+</div>
+<div class="section_content" >
+<a href = 'helpxnsxxenterexample.html'>HelpxNS::EnterExample</a>, <a href = 'helpxnsxxeraseexample.html'>HelpxNS::EraseExample</a>
+</div>
+<div class="section_header" hidden>
+KEYWORDS
+</div>
+<div class="section_content" hidden>
+
+</div>
+</body>
+</html>

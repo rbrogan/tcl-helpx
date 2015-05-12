@@ -76,10 +76,52 @@ frames-intro.html
 doc.css
      Styles the manual pages.
 
-helpxclins-registerdatabase.html
-     Page for the command HelpxCliNS::RegisterDatabase.
-helpxclins-unregisterdatabase.html
-     Page for the command HelpxCliNS::UnregisterDatabase.
+helpxns-argumentinfofor.html
+     Page for the command HelpxNS::ArgumentInfoFor.
+helpxns-createcommand.html
+     Page for the command HelpxNS::CreateCommand.
+helpxns-createhelpxdatabase.html
+     Page for the command HelpxNS::CreateHelpxDatabase.
+helpxns-deletecommand.html
+     Page for the command HelpxNS::DeleteCommand.
+helpxns-enterargumentinfo.html
+     Page for the command HelpxNS::EnterArgumentInfo.
+helpxns-enterexample.html
+     Page for the command HelpxNS::EnterExample.
+helpxns-entermoreinfo.html
+     Page for the command HelpxNS::EnterMoreInfo.
+helpxns-enterreturnvalue.html
+     Page for the command HelpxNS::EnterReturnValue.
+helpxns-enterseealso.html
+     Page for the command HelpxNS::EnterSeeAlso.
+helpxns-entershortdescription.html
+     Page for the command HelpxNS::EnterShortDescription.
+helpxns-entersignature.html
+     Page for the command HelpxNS::EnterSignature.
+helpxns-eraseargumentinfo.html
+     Page for the command HelpxNS::EraseArgumentInfo.
+helpxns-eraseexample.html
+     Page for the command HelpxNS::EraseExample.
+helpxns-eraseseealso.html
+     Page for the command HelpxNS::EraseSeeAlso.
+helpxns-examplesfor.html
+     Page for the command HelpxNS::ExamplesFor.
+helpxns-moreinfofor.html
+     Page for the command HelpxNS::MoreInfoFor.
+helpxns-registerdatabase.html
+     Page for the command HelpxNS::RegisterDatabase.
+helpxns-renamecommand.html
+     Page for the command HelpxNS::RenameCommand.
+helpxns-returnvaluefor.html
+     Page for the command HelpxNS::ReturnValueFor.
+helpxns-seealsofor.html
+     Page for the command HelpxNS::SeeAlsoFor.
+helpxns-shortdescriptionfor.html
+     Page for the command HelpxNS::ShortDescriptionFor.
+helpxns-signaturefor.html
+     Page for the command HelpxNS::SignatureFor.
+helpxns-unregisterdatabase.html
+     Page for the command HelpxNS::UnregisterDatabase.
 helpx.html
      Page for the command helpx.
 

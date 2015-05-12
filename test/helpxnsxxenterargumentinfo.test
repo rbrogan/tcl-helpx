@@ -1,0 +1,71 @@
+package require tcltest
+package require helpx 0.2
+
+::tcltest::test HelpxNS::EnterArgumentInfo-0 {Basic test}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterArgumentInfo SampleCommand Arg1 {The first argument.} 
+HelpxNS::EnterArgumentInfo SampleCommand Arg2 {The second argument.}
+HelpxNS::ArgumentInfoFor SampleCommand
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db}  -result {Arg1 {The first argument.} Arg2 {The second argument.}}  -output {}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::EnterArgumentInfo-1 {Position is beyond end}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterArgumentInfo SampleCommand Arg1 {The first argument.} 
+HelpxNS::EnterArgumentInfo SampleCommand Arg2 {The second argument.} 5
+HelpxNS::ArgumentInfoFor SampleCommand}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db}  -result {Arg1 {The first argument.} Arg2 {The second argument.}}  -output {}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::EnterArgumentInfo-2 {Overwrite existing}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterArgumentInfo SampleCommand Arg1 {Temp.}
+HelpxNS::EnterArgumentInfo SampleCommand Arg1 {First number to add.} 0
+puts [HelpxNS::ArgumentInfoFor SampleCommand]
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db}  -result {}  -output {Arg1 {First number to add.}
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::EnterArgumentInfo-3 {Same argname, different position}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterArgumentInfo SampleCommand Arg1 {The first argument.} 
+HelpxNS::EnterArgumentInfo SampleCommand Arg1 {The second argument.} 3
+HelpxNS::ArgumentInfoFor SampleCommand
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db}  -result {Value Arg1 in variable ArgName already exists.}  -output {}  -returnCodes {1}  
+
+
+::tcltest::test HelpxNS::EnterArgumentInfo-6 {ArgName is empty}  -setup {}  -body {HelpxNS::EnterArgumentInfo SampleCommand {} {Description.}
+}  -cleanup {}  -result {Variable ArgName has empty value.}  -output {}  -returnCodes {1}  
+
+
+::tcltest::test HelpxNS::EnterArgumentInfo-7 {Position is not non-negative integer}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterArgumentInfo SampleCommand Arg1 {The first argument.} asdf
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db}  -result {Variable Position has invalid value asdf.}  -output {}  -returnCodes {1}  
+
+
+::tcltest::test HelpxNS::EnterArgumentInfo-8 {Same argname, same position}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterArgumentInfo SampleCommand Arg1 {Temp1.}
+HelpxNS::EnterArgumentInfo SampleCommand Arg1 {Temp2.} 0
+HelpxNS::EnterArgumentInfo SampleCommand Arg1 {First number to add.} 0
+puts [HelpxNS::ArgumentInfoFor SampleCommand]
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db}  -result {}  -output {Arg1 {First number to add.}
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::EnterArgumentInfo-9 {Position is empty}  -setup {}  -body {HelpxNS::EnterArgumentInfo SampleCommand Arg1 {The first argument.} {}
+}  -cleanup {}  -result {Variable Position has empty value.}  -output {}  -returnCodes {1}  
+
+

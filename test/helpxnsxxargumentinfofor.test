@@ -1,0 +1,28 @@
+package require tcltest
+package require helpx 0.2
+
+::tcltest::test HelpxNS::ArgumentInfoFor-0 {Basic test}  -setup {sqlite3 test-helpx-3-db ./test-helpx-3.db
+HelpxNS::RegisterDatabase test-helpx-3-db
+set GenNS::DatabaseName test-helpx-3-db
+}  -body {HelpxNS::ArgumentInfoFor SampleCommand
+}  -cleanup {}  -result {Arg1 {The first argument.} Arg2 {The second argument.}}  -output {}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::ArgumentInfoFor-1 {One argument}  -setup {file copy -force ./test-helpx-3.bak ./test-helpx-3.db
+sqlite3 test-helpx-3-db ./test-helpx-3.db
+HelpxNS::RegisterDatabase test-helpx-3-db
+set GenNS::DatabaseName test-helpx-3-db
+}  -body {HelpxNS::CreateCommand TestCommand
+HelpxNS::EnterArgumentInfo TestCommand Arg1 {One argument.}
+puts [HelpxNS::ArgumentInfoFor TestCommand]
+}  -cleanup {file copy -force ./test-helpx-3.bak ./test-helpx-3.db
+}  -result {}  -output {Arg1 {One argument.}
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::ArgumentInfoFor-2 {No arguments}  -setup {}  -body {HelpxNS::CreateCommand TestCommand
+puts "*[HelpxNS::ArgumentInfoFor TestCommand]*"
+}  -cleanup {}  -result {}  -output {**
+}  -returnCodes {0}  
+
+

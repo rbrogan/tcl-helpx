@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>How to Use Helpx</title>
+<link rel="stylesheet" type="text/css" href="doc.css">
+</head>
+<body>
+<h1>How to Use Helpx</h1>
+<p>The following will take you about 20-40 minutes to get through (possibly less if you learn quick). After that you will be able to create your own Helpx databases and bundle them in your packages.</p>
+<ol>
+<li>Experimenting on your own</li>
+<li>Creating your own Helpx database</li>
+<li>Creating and modifying entries</li>
+<li>Querying entries</li>
+<li>Deleting a command</li>
+<li>Bundling a Helpx Database With Your Application</li>
+</ol>
+
+<h2>Experimenting on your own</h2>
+<p>
+There is a sample database and source file in the <span class="monospace">/sample</span> directory. You can try it out like this:
+</p>
+<pre>
+% cd sample
+% source sample.tcl
+sample-helpxdb
+% helpx SampleCommand
+SIGNATURE
+    SampleCommand {Arg1 Arg2}
+
+DESCRIPTION
+    Print out the arguments.
+
+RETURNS
+    None.
+
+ARGUMENTS
+    Arg1
+         The first argument.
+    Arg2
+         The second argument.
+
+MORE INFO
+    Nothing more to say.
+
+SEE ALSO
+    AnotherCommand AdditionalCommand
+
+EXAMPLE(S)
+
+% SampleCommand 1 2
+1 2
+%
+% set GenNS::DatabaseName sample-helpxdb
+</pre>
+<p>
+From there you are free to experiment with the Helpx commands and then type <span class="monospace">helpx SampleCommand</span> to see your changes. You can restore the sample database to how it was originally by entering: <span class="monospace">file copy -force sample-helpx.db.bak sample-helpx.db</span> from the CLI.
+</p>
+
+<h2>Creating Your Own Database (2-4 minutes to learn)</h2>
+<p>
+You must choose a filename for your database. For this example we will call it <span class="monospace">sample-helpx.db</span>.
+</p>
+<p>
+We enter the following commands to (1) load helpx, (2) create a helpx database, (3) configure Gen to use it, (4) open a connection to it, and (5) register it with Helpx.
+</p>
+<pre>
+% package require helpx
+% HelpxNS::CreateHelpxDatabase ./sample-helpx.db
+% set GenNS::DatabaseName sample-helpxdb
+% sqlite3 sample-helpxdb ./sample-helpx.db
+% HelpxNS::RegisterDatabase sample-helpxdb
+</pre>
+<p>
+You now have a file <span class="monospace">sample-helpx.db</span> in the current directory and it is registered. You are ready to start making entries. You can also use the <span class="monospace">helpx</span> command to view the entries you are making.
+</p>
+<h2>Creating and Modifying Entries (10-20 minutes to learn)</h2>
+<p>
+First, we need a command name. We will call ours <span class="monospace">SampleCommand</span>. Next, we make an entry for it like this:
+<p>
+<pre>
+% HelpxNS::CreateCommand SampleCommand
+1
+</pre>
+<p>
+So far we just have the bare entry with no fields filled out. Each of the commands to fill out a field takes the form <span class="monospace">HelpxNS::EnterXxx CommandName [...]</span>. You use these commands both when you enter info for the first time and when you modify it (as opposed to INSERT and UPDATE). Let us use them and fill things out for <span class="monospace">SampleCommand</span>. (After trying out each line, you may want to type <span class="monospace">helpx SampleCommand</span> and see the effects.)
+<p>
+<pre>
+% HelpxNS::EnterSignature SampleCommand {SampleCommand {Arg1 Arg2}}
+% HelpxNS::EnterShortDescription SampleCommand {Print out the arguments.}
+% HelpxNS::EnterReturnValue SampleCommand {None.}
+% HelpxNS::EnterArgumentInfo SampleCommand Arg1 {The first argument.}
+% HelpxNS::EnterArgumentInfo SampleCommand Arg2 {The second argument.}
+% HelpxNS::EnterMoreInfo SampleCommand {Nothing more to say.}
+</pre>
+<p>
+We leave out examples and see also for now.
+</p>
+<p>
+Now let us say that we want to change the short description and the return value. We just use the same commands with new data.
+</p>
+<pre>
+HelpxNS::EnterShortDescription SampleCommand {Add the arguments and return the sum.}
+HelpxNS::EnterReturnValue SampleCommand {Sum of the arguments.}
+</pre>
+<p>
+What if we want to change the descriptions for the arguments? In that case, we need to say which position the argument is in. As is typical, we start from a zero index.
+</p>
+<pre>
+HelpxNS::EnterArgumentInfo SampleCommand Arg1 {First number to add.} 0
+HelpxNS::EnterArgumentInfo SampleCommand Arg2 {Second number to add.} 1
+</pre>
+<p>
+Now suppose that we want to make it add three arguments. Then we have to change the signature and add another argument.
+</p>
+<pre>
+HelpxNS::EnterSignature SampleCommand {SampleCommand {Arg1 Arg2 Arg3}}
+HelpxNS::EnterArgumentInfo SampleCommand Arg3 {Third number to add}
+</pre>
+<p>
+When we do not give a position, Helpx assumes we will make the argument be last.
+</p>
+<p>
+But now suppose we want to get rid of that argument? We can erase it.
+</p>
+<pre>
+HelpxNS::EraseArgumentInfo SampleCommand 2
+</pre>
+<p>
+The positions of the other arguments are automatically adjusted, if needed, so that there are no gaps (e.g. if there are three arguments 0, 1, 2 and you erase the one in position 1 then the position of argument 2 is changed to 1 and there are no gaps).
+</p>
+<h2>Querying Entries (2-4 minutes to learn)</h2>
+<p>
+For each piece of information you enter, you can query it using a command of the form: <span class="monospace">HelpxNS::XxxFor TargetCommand</span>. For instance:
+</p>
+<pre>
+% HelpxNS::MoreInfoFor SampleCommand
+Nothing more to say.
+
+% HelpxNS::ShortDescriptionFor SampleCommand
+Add the arguments and return the sum.
+</pre>
+<p>
+For information where there is a list of elements (arguments, examples, see also) then the command will return a list. You can then use <span class="monospace">lindex</span> to get at a particular element, if you like.
+</p>
+<h2>Deleting a Command (1-2 minutes to learn)</h2>
+<p>
+To delete a command is simple:
+</p>
+<pre>
+HelpxNS::DeleteCommand SampleCommand
+</pre>
+<p>
+The command and all associated information are now deleted.
+</p>
+<h2>Bundling a Helpx Database With Your Application (5-10 minutes to learn)</h2>
+<p>
+Somewhere when your package loads, in one of the source files, include something like the following code:
+</p>
+<pre>
+# Load helpx.
+package require helpx
+
+# Find what directory this file is in.
+set MyDirectory [file dirname [info script]]
+
+# Make a connection to our helpx database.
+sqlite3 sample-helpxdb $MyDirectory/sample-helpx.db
+
+# Register that connection.
+HelpxNS::RegisterDatabase sample-helpxdb
+</pre>
+<p>
+You must include your helpx database (e.g. <span class="monospace">sample-helpx.db</span>) in the same directory as the source (.tcl) file that will load it.
+</p>
+<p>
+When someone loads your package it will also load Helpx and register your database with it. From there the user can type <span class="monospace">helpx OneOfYourCommands</span> and then get information about the command.
+</p>
+<p>
+You can find a sample package that uses Helpx in the <span class="monospace">/sample</span> directory. It is very simple and uses what we have gone over before. You can play around with it and see how easily you can add your own commands.
+</p>
+</body>
+</html>

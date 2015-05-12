@@ -94,37 +94,51 @@ Helpx will let you generate HTML pages that look like the core Tcl documentation
 If you would like to confirm the library is installed and working then try the following from a Tcl shell.
 </p>
 <pre>
-% package require helpx-cli
-0.1.0
-% helpx AddTo
+% package require helpx
+0.2
+% helpx helpx
 SIGNATURE
-    AddTo {VarName Value}
+    helpx {args}
 
 DESCRIPTION
-    Take variable. Add amount to it.
+    Print out help info for given command.
 
 RETURNS
-    Value of the variable after added to.
+    None.
 
 ARGUMENTS
-    VarName
-         Name of variable to add to.
-    Value
-         How much to add.
+    args
+         Command name or option flag (see More Info for list). Last argument will
+be taken as the name of the command.
 
 MORE INFO
-    Unlike incr, this command does allow non-integer values (e.g. you can do
-AddTo MyVar 1.2).
+    If you use no flags or -all then helpx will show all info. If you want
+specific info only, then you can use one or more of the following flags.
+
+    -arg : Arguments.
+
+    -more : More Info section.
+
+    -desc : Short (<= 60 words) description.
+
+    -ex : Examples.
+
+    -ret : Return Value.
+
+    -sig : Signature.
+
+    -see : See Also
+
+
 
 SEE ALSO
-    SubtractFrom Decr expr DivideBy MultiplyBy
+
 
 EXAMPLE(S)
 
-% set MyVar 123
-123
-% AddTo MyVar 4
-127
+% helpx -sig String2File
+SIGNATURE
+String2File {StringValue OutFilePath}
 </pre>
 <p>
 You should be all set!<br>

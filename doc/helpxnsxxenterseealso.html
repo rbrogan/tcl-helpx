@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Helpx - HelpxNS::EnterSeeAlso</title>
+<link rel="stylesheet" type="text/css" href="doc.css">
+<body>
+<div class="section_header">
+NAME
+</div>
+<div class="section_content">
+HelpxNS::EnterSeeAlso  &mdash;  Enter other commands to make links to.
+</div>
+<div class="section_header">
+SYNOPSIS
+</div>
+<div class="section_content">
+<b>HelpxNS::EnterSeeAlso</b> <i>Command</i> <i>SeeAlsoData</i> <i>?Position?</i>
+</div>
+<div class="section_header">
+DESCRIPTION
+</div>
+<div class="section_content">
+<div class='subsection_header'>Return Value</div>
+<div class='subsection_content'>
+ID of entry used in the commandinfo table.</div><div class='subsection_header'>Arguments</div><div class='subsection_content'><table class='argument_table'><tr class='table_row_b'><td class='argument_left'><i>Command</i></td><td class='argument_right'>Command name or ID.</td></tr><tr class='table_row_a'><td class='argument_left'><i>SeeAlsoData</i></td><td class='argument_right'>Command to link to.</td></tr><tr class='table_row_b'><td class='argument_left'><i>Position</i></td><td class='argument_right'>Optional. Specify where the link is to appear in the order. Defaults to put it at the end.</td></tr></table></div><div class = 'subsection_header'>Error Conditions</div>
+<div class= 'subsection_content'>
+<table>
+<tr>
+<th>Condition</th><th>Error Code</th><th>Error Message</th></tr>
+<tr><td>Contents of variable are invalid.</td>
+<td class="error_code">-11</td>
+<td>Variable $VarName has invalid value $Value.</td>
+</tr>
+<tr><td>Input value is empty.</td>
+<td class="error_code">-12</td>
+<td>Variable $VarName has empty value.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="section_header">
+EXAMPLES
+</div>
+<div class="section_content">
+<div class="code_sample"><pre>% <b>HelpxNS::EnterSeeAlso SampleCommand {AnotherCommand AdditionalCommand}</b><br>1<br>% HelpxNS::SeeAlsoFor SampleCommand<br>AnotherCommand AdditionalCommand<br></pre></div>
+<div class="section_header" >
+SEE ALSO
+</div>
+<div class="section_content" >
+<a href = 'helpxnsxxseealsofor.html'>HelpxNS::SeeAlsoFor</a>
+</div>
+<div class="section_header" hidden>
+KEYWORDS
+</div>
+<div class="section_content" hidden>
+
+</div>
+</body>
+</html>

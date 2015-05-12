@@ -1,0 +1,46 @@
+package require tcltest
+package require helpx 0.2
+
+::tcltest::test HelpxNS::RegisterDatabase-0 {Basic test}  -setup {set HelpxNS::DatabaseConnectionList ""
+}  -body {package require sqlite3
+sqlite3 test-helpx-3-db ./test-helpx-3.db
+HelpxNS::RegisterDatabase test-helpx-3-db
+helpx -sig SampleCommand
+}  -cleanup {set HelpxNS::DatabaseConnectionList ""
+}  -result {}  -output {SIGNATURE
+    SampleCommand {Arg1 Arg2}
+
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::RegisterDatabase-1 {Register two databases}  -setup {set HelpxNS::DatabaseConnectionList ""
+}  -body {package require sqlite3
+sqlite3 test-helpx-1-db ./test-helpx-1.db
+sqlite3 test-helpx-3-db ./test-helpx-3.db
+HelpxNS::RegisterDatabase test-helpx-1-db
+HelpxNS::RegisterDatabase test-helpx-3-db
+helpx -sig SampleCommand
+}  -cleanup {set HelpxNS::DatabaseConnectionList ""
+}  -result {}  -output {SIGNATURE
+    SampleCommand {Arg1 Arg2}
+
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::RegisterDatabase-2 {Register the same database twice}  -setup {set HelpxNS::DatabaseConnectionList ""
+}  -body {package require sqlite3
+sqlite3 test-helpx-3-db ./test-helpx-3.db
+HelpxNS::RegisterDatabase test-helpx-3-db
+HelpxNS::RegisterDatabase test-helpx-3-db
+helpx -sig SampleCommand
+}  -cleanup {set HelpxNS::DatabaseConnectionList ""
+}  -result {}  -output {SIGNATURE
+    SampleCommand {Arg1 Arg2}
+
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::RegisterDatabase-5 {ConnectionName is empty}  -setup {}  -body {HelpxNS::RegisterDatabase {}
+}  -cleanup {}  -result {Variable ConnectionName has empty value.}  -output {}  -returnCodes {1}  
+
+

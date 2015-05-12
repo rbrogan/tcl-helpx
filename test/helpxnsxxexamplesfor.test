@@ -1,0 +1,33 @@
+package require tcltest
+package require helpx 0.2
+
+::tcltest::test HelpxNS::ExamplesFor-0 {Basic test}  -setup {sqlite3 test-helpx-3-db ./test-helpx-3.db
+HelpxNS::RegisterDatabase test-helpx-3-db
+set GenNS::DatabaseName test-helpx-3-db
+}  -body {puts [lindex [HelpxNS::ExamplesFor SampleCommand] 0]
+}  -cleanup {}  -result {}  -output {% SampleCommand 1 2
+1 2
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::ExamplesFor-3 {No examples}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {puts "*[HelpxNS::ExamplesFor SampleCommand]*"
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+}  -result {}  -output {**
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::ExamplesFor-4 {Multiple examples}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterExample SampleCommand {Example 1}
+HelpxNS::EnterExample SampleCommand {Example 2}
+HelpxNS::ExamplesFor SampleCommand
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+}  -result {{Example 1} {Example 2}}  -output {}  -returnCodes {0}  
+
+

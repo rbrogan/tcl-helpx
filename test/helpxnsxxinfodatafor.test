@@ -1,0 +1,9 @@
+package require tcltest
+package require helpx
+
+::tcltest::test HelpxNS::InfoDataFor-0 {Basic test}  -setup {}  -body {}  -cleanup {}  -result {}  -output {}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::InfoDataFor-3 {InfoType is empty}  -setup {}  -body {}  -cleanup {}  -result {}  -output {}  -returnCodes {0}  
+
+

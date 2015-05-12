@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Helpx - HelpxNS::EraseSeeAlso</title>
+<link rel="stylesheet" type="text/css" href="doc.css">
+<body>
+<div class="section_header">
+NAME
+</div>
+<div class="section_content">
+HelpxNS::EraseSeeAlso  &mdash;  Erase see also link, at given position.
+</div>
+<div class="section_header">
+SYNOPSIS
+</div>
+<div class="section_content">
+<b>HelpxNS::EraseSeeAlso</b> <i>Command</i> <i>Position</i>
+</div>
+<div class="section_header">
+DESCRIPTION
+</div>
+<div class="section_content">
+<div class='subsection_header'>Return Value</div>
+<div class='subsection_content'>
+None.</div><div class='subsection_header'>Arguments</div><div class='subsection_content'><table class='argument_table'><tr class='table_row_b'><td class='argument_left'><i>Command</i></td><td class='argument_right'>Command name or ID.</td></tr><tr class='table_row_a'><td class='argument_left'><i>Position</i></td><td class='argument_right'>Position of the argument, starting from 0-index.</td></tr></table></div><div class = 'subsection_header'>Error Conditions</div>
+<div class= 'subsection_content'>
+<table>
+<tr>
+<th>Condition</th><th>Error Code</th><th>Error Message</th></tr>
+<tr><td>Contents of variable are invalid.</td>
+<td class="error_code">-11</td>
+<td>Variable $VarName has invalid value $Value.</td>
+</tr>
+<tr><td>Input value is empty.</td>
+<td class="error_code">-12</td>
+<td>Variable $VarName has empty value.</td>
+</tr>
+<tr><td>Input value is out-of-range.</td>
+<td class="error_code">-8</td>
+<td>Input value $Value is out-of-range.</td>
+</tr>
+</table>
+</div><div class = 'subsection_header'>More Info</div><div class= 'subsection_content'>Note that the position of other examples will be automatically adjusted, like if you were deleting an element from a list.
+</div>
+</div>
+<div class="section_header">
+EXAMPLES
+</div>
+<div class="section_content">
+<div class="code_sample"><pre>% HelpxNS::EnterSeeAlso SampleCommand AnotherCommand<br>1<br>% HelpxNS::EnterSeeAlso SampleCommand AdditionalCommand<br>2<br>% puts [HelpxNS::SeeAlsoFor SampleCommand]<br>AnotherCommand AdditionalCommand<br>% <b>HelpxNS::EraseSeeAlso SampleCommand 0</b><br>% puts [HelpxNS::SeeAlsoFor SampleCommand]<br>AdditionalCommand<br></pre></div>
+<div class="section_header" >
+SEE ALSO
+</div>
+<div class="section_content" >
+<a href = 'helpxnsxxenterseealso.html'>HelpxNS::EnterSeeAlso</a>, <a href = 'helpxnsxxseealsofor.html'>HelpxNS::SeeAlsoFor</a>
+</div>
+<div class="section_header" hidden>
+KEYWORDS
+</div>
+<div class="section_content" hidden>
+
+</div>
+</body>
+</html>

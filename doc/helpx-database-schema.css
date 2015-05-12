@@ -1,0 +1,24 @@
+.table_name {
+     font-size: 110%;
+     font-weight: bold;
+}
+
+.table_one {
+     background-color: rgba(32, 170, 240, 0.33);
+}
+
+.table_two {
+     background-color: rgba(85, 146, 179, 0.33);
+}
+
+.table_three {
+     background-color: rgba(22, 116, 164, 0.33);
+}
+
+.table_four {
+     background-color: rgba(104, 194, 240, 0.33);
+}
+
+.table_five {
+     background-color: rgba(15, 80, 113, 0.33);
+}

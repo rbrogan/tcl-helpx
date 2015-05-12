@@ -1,0 +1,37 @@
+package require tcltest
+package require helpx 0.2
+
+::tcltest::test HelpxNS::EnterSignature-0 {Basic test}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterSignature SampleCommand {Sample Command {Arg1 Arg2}}
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+}  -result {1}  -output {}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::EnterSignature-3 {Signature is empty}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterSignature SampleCommand {}
+puts "*[HelpxNS::SignatureFor SampleCommand]*"
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+}  -result {}  -output {**
+}  -returnCodes {0}  
+
+
+::tcltest::test HelpxNS::EnterSignature-5 {Overwrite existing}  -setup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+sqlite3 test-helpx-2-db ./test-helpx-2.db
+HelpxNS::RegisterDatabase test-helpx-2-db
+set GenNS::DatabaseName test-helpx-2-db
+}  -body {HelpxNS::EnterSignature SampleCommand {SampleCommand {Arg1 Arg2}}
+puts [HelpxNS::SignatureFor SampleCommand]
+HelpxNS::EnterSignature SampleCommand {SampleCommand {Arg1 Arg2 Arg3}}
+puts [HelpxNS::SignatureFor SampleCommand]
+}  -cleanup {file copy -force ./test-helpx-2.bak ./test-helpx-2.db
+}  -result {}  -output {SampleCommand {Arg1 Arg2}
+SampleCommand {Arg1 Arg2 Arg3}
+}  -returnCodes {0}  
+
+

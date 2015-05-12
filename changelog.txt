@@ -2,5 +2,60 @@ Helpx
 
 CHANGELOG
 
+Prior to v1.0 release, there may be breaking changes without a major rev change.
+After v1.0 release, breaking changes will result in a major rev change.
+
+2015.05.11
+Helpx API to create and edit your own Helpx documentation databases and bundle
+them in your packages.
+
+Got rid of HelpxCliNS and replaced with HelpxNS.
+
+Changes by functionality
+     Commands to create and modify a Helpx database.
+     Documentation to aid in learning to use Helpx.
+
+
+Changes by files
+
+     /
+          Added sample directory to hold sample package that bundles helpx in it.
+          changelog.html, changelog.txt
+               Updated with latest info.
+          news.html, news.txt
+               Updated with latest info.
+          roadmap.html
+               Updated with latest info.
+     /doc
+          Added pages for new commands.
+          Added index pages with new version number.
+          Updated index pages with new commands.
+          helpx-database-schema.html, helpx-database-schema.css
+               Explain the schema so that user can edit tables as the like.
+          how-to-use-helpx.html
+               Tutorial for getting going.
+          start-here.html
+               A starting point that gives links to other pages and tells what they are for.
+     /sample
+          sample-helpx.db
+               SQLite database with Helpx schema. Includes documentation for a sample command.
+          sample.tcl
+               Sample Tcl source file that starts up Helpx and registers its database. See
+manual for details.
+          sample-helpx.db.bak
+               Backup version of the database so that user can play around and then use this
+file to restore.
+     /src
+          helpx.tcl
+               Updated files with new commands and version number.
+               Removed HelpxCliNS and replaced with HelpxNS.
+          helpx-helpx.db
+               New commands and new schema.
+          pkgIndex.tcl
+               Updated version.
+     /test
+          Added tests for new commands.
+          Remove test files that use old namespace name.
+            
 2015.04.06
 Pre-release to support Gen.
